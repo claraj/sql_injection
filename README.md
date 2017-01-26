@@ -45,36 +45,11 @@ Success! We now know our admin's password starts with `k`. An attacker can use t
 
 It might take a while, but admin access to a server or access to a whole database full of credit card numbers is worth the effort. (And anyone smart enough to use SQL injection is probably smart enough to write a script that will do the hard work for them... or download one of the many SQL injection tools freely available on the internet, like SQLNinja or SQLMap.)
 
-Maybe we'd like to create a new account for ourselves. Enter any username, and this password
-
-    ' ; insert into passwords values ('evil', 'New Evil User', 'password'); select * from passwords where '1'='1
-
-And then you should be able to log in with the username `evil` and password `password`.
-
-The `;` signifies the end of a SQL command, so you can add your own SQL command afterwards. Remember to add a SQL statement at the end that can use the final `'` that your code is adding to the SQL.
-
-The `select * from passwords where '1'='1` part doesn't do anything related to creating a new user, but it uses up the spare `'` to make the sequence of commands valid. 
-
-Another approach is to write SQL that comments out the last comma.
-
-And how about simply deleting the whole database? Enter anything for the username and this for the password,
-
-    ' ; drop table passwords  ; select * from passwords where '1'='1
-
-You'll see the Access Denied message, but if you try and log in with a valid account you'll see an error that the database table doesn't exist any more.
-
-Try it out - can you do these things?
-
-* Can you create yourself a new account?
-* Can you delete someone else's account?
-* Can you change someone's password? 
-* Can you discover someone's password?
-* What if you program's database user has permissions to create other users. Could you create a new database user and grant that user permissions?
-
+This application only allows you run one SQL statement at a time. Other databases/applications can be configured to run more than one SQL command at once - notably ASP and SQLServer - see the Visual Basic version of this project for all kinds of ways to abuse this - adding yourself as a new user, deleting the whole database... https://github.com/minneapolis-edu/vb-sql-injection
 
 Consider this could be a login form on a website that anyone could access. This is a huge problem. 
 
-And this is just the tip of the iceberg of SQL injection. There are many more variations which can be used to discover your database table names, columns, and all of the data within. If you don't filter user input, a malicious user can potentially read all of your data and/or destroy your database. Think about databases of usernanmes and passwords, or credit card data, or names and social security numbers; for example LinkedIn (millions of username and passwords stolen) or the Heartland data breach (millions of credit cards stolen), VTech, the Wall Street Journal, the TalkTalk ISP, many government organization, and many more...
+And this is just the tip of the iceberg of SQL injection. There are many more variations which can be used to discover your database table names, columns, and all of the data within. https://www.netsparker.com/blog/web-security/sql-injection-cheat-sheet/ If you don't filter user input, a malicious user can potentially read all of your data and/or destroy your database. Think about databases of usernanmes and passwords, or credit card data, or names and social security numbers; for example LinkedIn (millions of username and passwords stolen) or the Heartland data breach (millions of credit cards stolen), VTech, the Wall Street Journal, the TalkTalk ISP, many government organization, and many more...
 
 SQL injection hall of shame (Code Curmudgeon): http://codecurmudgeon.com/wp/sql-injection-hall-of-shame/
  
