@@ -7,11 +7,11 @@ Subtitle: how not to write a login screen
 Here's some valid passwords from the application's database. 
 
 ```
-name, username, password
-'Abby Admin', 'admin', 'kittens'
-'Ben SysAdmin', 'ben', 'octopus'
-'Carl ComputerTech', 'carl', 'mouse'
-'Deb Developer', 'deb', 'zebra'
+username, name, password
+admin|Abby Admin|kittens
+bill|Bill S Preston|excellent!
+bart|Bart Simpson|eatmyshorts
+miley|Miley Cyrus|top40
 ```
 
 
