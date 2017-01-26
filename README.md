@@ -53,4 +53,11 @@ And this is just the tip of the iceberg of SQL injection. There are many more va
 
 SQL injection hall of shame (Code Curmudgeon): http://codecurmudgeon.com/wp/sql-injection-hall-of-shame/
  
-OK, so how to fix? One very useful preventative measure is parameterized queries. Try replacing the SQL statement at PasswordDatabase's authenticateUser() method with a parameterized query, and then try the evil SQL again. It shouldn't work. This is why you should always user parameterized queries, you should always validate user input, and doubly always when user input is involved!
+OK, so how to fix? One very useful preventative measure is parameterized queries. Try replacing this line 
+
+```
+ sql_statement = '''SELECT name FROM users WHERE username = '%s' and password = '%s' ''' % (uname, password)
+
+```
+
+with a parameterized query, and then try the evil SQL again. It shouldn't work. This is why you should ALWAYS use parameterized queries, and validate your user input - don't trust your users!
