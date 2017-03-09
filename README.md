@@ -1,7 +1,5 @@
 # sql_injection in Python
 
-## SQL injection example: Java with MySQL
-
 Subtitle: how not to write a login screen
 
 Here's some valid passwords from the application's database. 
