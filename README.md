@@ -1,6 +1,6 @@
 # sql_injection in Python
 
-###Subtitle: how not to write a login screen
+### Subtitle: how not to write a login screen
 
 Here's some valid passwords from the application's database. 
 
