@@ -71,7 +71,6 @@ class LoginGUI(Frame):
 
         return result
 
-
     def _quit(self):
 
         exit(0)
