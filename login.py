@@ -51,13 +51,14 @@ class LoginGUI(Frame):
         # Or whatever the user typed in. Unfortunately, there is no validation so anything the user
         # enters will be send directly to the database with NO validation.
 
-        print('Attempting to login user with username: %s \npassword: %s' % (uname, password))
+        print(f'Attempting to login user with username: {uname}\npassword: {password}')
 
         db = sqlite3.connect(database_filename)
-        db.row_factory = sqlite3.Row  # Row factory allows us to refer to columns by name (default is by integer index)
+        db.row_factory = sqlite3.Row  # Row factory allows us to refer to columns by name, instead of the default, by integer index
         cursor = db.cursor()
 
-        sql_statement = '''SELECT name FROM users WHERE username = '%s' and password = '%s' ''' % (uname, password)
+        # create a SQL statement using a format string to include the user's username and password 
+        sql_statement = f"SELECT name FROM users WHERE username = '{uname}' and password = '{password}'" 
 
         print('About to execute the following SQL statement: \n' + sql_statement)
 
@@ -65,7 +66,7 @@ class LoginGUI(Frame):
 
         result = None  # Assume login fails, unless DB returns a row for this user
 
-        # This loop won't run if no results are returned.
+        # This loop won't run if no results are returned, cursor will be empty
         for row in cursor:
             result = row['name']  # Extract name from first row
             break
@@ -76,7 +77,6 @@ class LoginGUI(Frame):
 
 
     def _quit(self):
-
         exit(0)
 
 
@@ -95,6 +95,8 @@ class LoginGUI(Frame):
 
 
 def setup_database():
+
+    # removes any existing data and populates the database with example user accounts. 
 
     db = sqlite3.connect(database_filename)
     cursor = db.cursor()
@@ -121,12 +123,10 @@ def setup_database():
 
 
 def start_gui():
-
     LoginGUI().mainloop()
 
 
 def quit():
-
     sys.exit()
 
 
