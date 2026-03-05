@@ -36,11 +36,11 @@ Success! We now know our admin's password starts with `k`. An attacker can use t
     ' or password like 'kc%
     etc...
 
-It might take a while, but admin access to a server or access to a whole database full of credit card numbers is worth the effort. And anyone smart enough to use SQL injection is probably smart enough to write a script that will do the hard work for them... or download one of the many SQL injection tools freely available on the internet, like SQLNinja or SQLMap.
+It might take a while, but admin access to a server or access to a whole database full of credit card numbers is worth the effort. And anyone smart enough to use SQL injection is probably smart enough to write a script that will do the hard work for them... or download one of the many SQL injection tools freely available on the internet, like SQLNinja or SQLMap. These tools can automate this and other forms of SQL injection. Obviously, you should NEVER use any of these tools, or try SQL injection, on any real websites. Hacking is a criminal offence with severe penalties, including jail time. You should educate yourself about how to do security research and testing safely in an isolated environment where you have clear permission to do so. 
 
-This application only allows you run one SQL statement at a time. Other databases/applications can be configured to run more than one SQL command at once - notably ASP and SQLServer - see the Visual Basic version of this project for all kinds of ways to abuse this - which means that a malicious user can add themselves as a new user, delete the whole database... https://github.com/minneapolis-edu/vb-sql-injection
+This application only allows you run one SQL statement at a time. Other databases/applications can be configured to run more than one SQL command at once - for example, SQLServer - see the Visual Basic version of this project for all kinds of ways to abuse this - which means that a malicious user can add themselves as a new user, delete the whole database... https://github.com/claraj/vb-sql-injection
 
-Consider this could be a login form on a website that anyone could access. This is a huge problem. 
+Consider this could be a login form on a website that anyone could access. SQL Injection is a huge problem. 
 
 And this is just the tip of the iceberg of SQL injection. There are many more variations which can be used to discover your database table names, columns, and all of the data within. https://www.netsparker.com/blog/web-security/sql-injection-cheat-sheet/ If you don't filter user input, a malicious user can potentially read all of your data and/or destroy your database. Think about databases of usernames and passwords, or credit card data, or names and social security numbers. Some data breaches via SQL injection include LinkedIn (millions of username and passwords stolen) or the Heartland data breach (millions of credit cards stolen), VTech, the Wall Street Journal, the TalkTalk ISP, many government organizations, and many more...
 
@@ -53,4 +53,4 @@ OK, so how to fix? One very useful preventative measure is parameterized queries
 
 ```
 
-with a parameterized query, and then try the evil SQL again. It shouldn't work. This is why you should ALWAYS use parameterized queries, and validate your user input - don't trust your users!
+with a parameterized query, https://docs.python.org/3/library/sqlite3.html#how-to-use-placeholders-to-bind-values-in-sql-queries and then try the malicious SQL again. It shouldn't work. This is why you should ALWAYS use parameterized queries, and validate your user input - don't trust your users!
