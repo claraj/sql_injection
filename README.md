@@ -1,27 +1,22 @@
-# sql_injection in Python
+# SQL Injection Attacks in Python and SQLite
 
-### Subtitle: how not to write a login screen
+## Or, how not to write a login screen
 
-Here's some valid passwords from the application's database. 
+This application represents a login screen. Here's some valid user accounts and passwords from the application's database. 
 
-```
-username, name, password
-admin|Abby Admin|kittens
-bill|Bill S Preston|excellent!
-bart|Bart Simpson|eatmyshorts
-miley|Miley Cyrus|top40
-```
+    username, name, password
+    admin|Abby Admin|kittens
+    bill|Bill S Preston|excellent!
+    bart|Bart Simpson|eatmyshorts
+    miley|Miley Cyrus|top40
 
-
-Run the application, and try logging in with one of the valid passwords, and also try with an invalid password. You should see an appropriate success or failure message.
+Run the application, and try logging in with one of the valid passwords, and also try with an invalid password. You should see an appropriate success, or failure message.
 
 OK, now enter anything for the username, and this for password. 
 
-```
-whatever' or '1'='1
-```
+    whatever' or '1'='1
 
-Who are you logged in as?
+Who are you logged in as? Why? If you look at the console output from the application, it prints the SQL that is being executed. There's a part of the SQL that always evaluates to true, which results in returning all the data from the database, starting with the first user account. 
 
 In addition to logging in as admin, there's more you can do with SQL injection.
 
@@ -32,14 +27,14 @@ Even though we can gain access to the admin account, we don't actually know the 
 Put that into the SQL string, and you are asking to be logged in if our admin's password starts with `a`.
 Now, try this for the password,
 
-      ' or password like 'k%
+    ' or password like 'k%
 
 Success! We now know our admin's password starts with `k`. An attacker can use trial and error to figure out all of the characters in the password.
 
     ' or password like 'ka%
     ' or password like 'kb%
     ' or password like 'kc%
-    ....
+    etc...
 
 It might take a while, but admin access to a server or access to a whole database full of credit card numbers is worth the effort. And anyone smart enough to use SQL injection is probably smart enough to write a script that will do the hard work for them... or download one of the many SQL injection tools freely available on the internet, like SQLNinja or SQLMap.
 
